@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
+    "declarationMap": false,
+    "sourceMap": false,
+    "strict": true,
+    "target": "es2020",
+    "lib": ["esnext", "dom"],
+    "newLine": "LF",
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "removeComments": false,
+
+    "module": "esnext",
+    "moduleResolution": "node",
+
+    "esModuleInterop": true,
+    "noEmitOnError": true,
+    "strictNullChecks": true,
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ]
+}
