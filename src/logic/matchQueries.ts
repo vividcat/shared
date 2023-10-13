@@ -1,12 +1,22 @@
 // taked from https://github.com/d6u/container-query-toolkit
+import { type Writable } from '../types'
+
 interface Rule {
-  minWidth: number
-  maxWidth: number
-  minHeight: number
-  maxHeight: number
+  readonly minWidth: number
+  readonly maxWidth: number
+  readonly minHeight: number
+  readonly maxHeight: number
 }
 
-export type Rules = Record<string, Partial<Rule>>
+export type Rules = Record<string, Partial<Writable<Rule>>>
+
+/**
+ * If missing height or width, {min|max}Height or {min|max}Width rules will be ignored respectively.
+ */
+export interface ContentSize {
+  width?: number
+  height?: number
+}
 
 export function matchQueries<R extends Rules>(rules: R) {
   type Entry = Rule & { className: keyof R }
@@ -25,8 +35,8 @@ export function matchQueries<R extends Rules>(rules: R) {
     })
   }
 
-  return function ({ width, height }: { width?: number; height?: number }) {
-    const classNameMap = {} as ReturnType
+  return function ({ width, height }: ContentSize) {
+    const classNameMap: ReturnType = <ReturnType>{}
 
     for (const { className, minWidth, maxWidth, minHeight, maxHeight } of entries) {
       if (height != null && width != null) {

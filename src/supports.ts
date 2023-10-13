@@ -1,4 +1,4 @@
-export const passive = (() => {
+export const passive = /* @__PURE__ */(() => {
   let passive = false
   try {
     const get = function () {
